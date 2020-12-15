@@ -7,17 +7,18 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
 
-class BookReservationTest extends TestCase
+class BookManagementTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
     public function a_book_can_be_added_to_the_library()
     {
-        $this->withoutExceptionHandling();
+        
         $response = $this->addBook();
-        $response->assertOk();
         $this->assertCount(1, Book::all());
+        $book = Book::first();
+        $response->assertRedirect($book->path());
     }
 
     /** @test */
@@ -38,7 +39,6 @@ class BookReservationTest extends TestCase
     /** @test */
     public function a_book_can_be_updated()
     {
-        $this->withoutExceptionHandling();
         $this->addBook();
         $book = Book::first();
         $response = $this->patch("/books/$book->id", [
@@ -46,10 +46,21 @@ class BookReservationTest extends TestCase
             'author' => 'Updated Author'
         ]);
         $book = Book::first();
-        $response->assertOk();
         $this->assertEquals('Updated Book Title', $book->title);
         $this->assertEquals('Updated Author', $book->author);
         $this->assertCount(1, Book::all());
+        $response->assertRedirect($book->path());
+    }
+
+    /** @test */
+    public function a_book_can_be_deleted()
+    {
+        $this->addBook();
+        $book = Book::first();
+        $response = $this->delete("/books/$book->id");
+        $this->assertCount(0, Book::all());
+        $response->assertRedirect('/books');
+
     }
 
     /**

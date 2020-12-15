@@ -13,14 +13,23 @@ use App\Models\Models\Book;
 
 class BookController extends Controller
 {
+    const INDEX_ROUTE = '/books';
     public function store()
     {
-        Book::create($this->validateRequestData());
+        $book = Book::create($this->validateRequestData());
+        return redirect($book->path());
     }
 
     public function update(Book $book)
     {
         $book->update($this->validateRequestData());
+        return redirect($book->path());
+    }
+
+    public function destroy(Book $book)
+    {
+        $book->delete();
+        return redirect(self::INDEX_ROUTE);
     }
 
     /**
