@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\Models\Author;
-use App\Models\Models\Book;
+use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Log;
 use Tests\TestCase;

@@ -9,7 +9,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Models\Book;
+use App\Models\Book;
 
 class BookController extends Controller
 {

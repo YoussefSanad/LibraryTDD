@@ -9,7 +9,7 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Models\Author;
+use App\Models\Author;
 
 class AuthorController extends Controller
 {

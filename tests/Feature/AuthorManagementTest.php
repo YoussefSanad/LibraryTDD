@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Models\Models\Author;
+use App\Models\Author;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
