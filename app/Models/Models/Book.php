@@ -11,6 +11,11 @@ class Book extends Model
 
     protected $guarded = [];
 
+    public function setAuthorIdAttribute($author)
+    {
+        $this->attributes['author_id'] = Author::firstOrCreate(['name' => $author])->id;
+    }
+
     public function path()
     {
         return "/books/$this->id";

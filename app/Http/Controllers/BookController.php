@@ -14,6 +14,7 @@ use App\Models\Models\Book;
 class BookController extends Controller
 {
     const INDEX_ROUTE = '/books';
+
     public function store()
     {
         $book = Book::create($this->validateRequestData());
@@ -38,8 +39,8 @@ class BookController extends Controller
     public function validateRequestData()
     {
         $data = request()->validate([
-            'title'  => 'required',
-            'author' => 'required'
+            'title'     => 'required',
+            'author_id' => 'required'
         ]);
         return $data;
     }
